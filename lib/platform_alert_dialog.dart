@@ -27,12 +27,14 @@ import 'package:flutter/material.dart';
 ///   ]
 /// )
 /// ```
+
+// ignore_for_file: deprecated_member_use, todo
 class PlatformAlertDialog extends StatelessWidget {
   const PlatformAlertDialog({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.content,
-    this.actions,
+    this.actions = const <Widget>[],
   }) : super(key: key);
 
   /// The title of the dialog.
@@ -44,7 +46,7 @@ class PlatformAlertDialog extends StatelessWidget {
   ///
   /// Complex widgets, like inputs, have to adapts their style to the current
   /// platform.
-  final Widget content;
+  final Widget? content;
 
   /// The actions of the dialog.
   ///
@@ -70,9 +72,18 @@ class PlatformAlertDialog extends StatelessWidget {
           ),
           actions: actions,
         );
+      case TargetPlatform.linux:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.macOS:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.windows:
+        // TODO: Handle this case.
+        break;
     }
     // unreachable
-    return null;
+    return Container();
   }
 }
 
@@ -115,9 +126,9 @@ enum ActionType {
 /// ```
 class PlatformDialogAction extends StatelessWidget {
   const PlatformDialogAction({
-    Key key,
-    @required this.child,
-    @required this.onPressed,
+    Key? key,
+    required this.child,
+    required this.onPressed,
     this.actionType: ActionType.Default,
   }) : super(key: key);
 
@@ -127,7 +138,7 @@ class PlatformDialogAction extends StatelessWidget {
   final Widget child;
 
   /// The callback called when the button is pressed or activated.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// The type of this action, usually [ActionType.Default].
   final ActionType actionType;
@@ -158,7 +169,6 @@ class PlatformDialogAction extends StatelessWidget {
               textColor: Colors.white,
             );
         }
-        break;
       case TargetPlatform.iOS:
         switch (actionType) {
           case ActionType.Default:
@@ -179,8 +189,17 @@ class PlatformDialogAction extends StatelessWidget {
               isDestructiveAction: true,
             );
         }
+      case TargetPlatform.linux:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.macOS:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.windows:
+        // TODO: Handle this case.
+        break;
     }
-    // unreachable
-    return null;
+    // TODO: Handle this case.
+    return Container();
   }
 }
